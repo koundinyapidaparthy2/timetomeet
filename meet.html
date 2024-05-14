@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown to December 18th, 2024</title>
+  </head>
+  <body>
+    <h1>Countdown to December 18th, 2024</h1>
+
+    <div id="countdown"></div>
+
+    <script>
+      function updateCountdown() {
+        var targetDate = new Date("December 18, 2024 00:00:00 GMT+0000");
+        var now = new Date();
+
+        var timeDifference = targetDate - now;
+
+        var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) % 30;
+        var hours = Math.floor(timeDifference / (1000 * 60 * 60)) % 24;
+
+        document.getElementById("countdown").innerHTML =
+          "<h2>IST (Indian Standard Time): " +
+          months +
+          " months, " +
+          days +
+          " days, " +
+          hours +
+          " hours</h2>";
+
+        var estDate = new Date(
+          now.toLocaleString("en-US", { timeZone: "America/New_York" })
+        );
+        var pstDate = new Date(
+          now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" })
+        );
+
+        var estTimeDifference = targetDate - estDate;
+        var pstTimeDifference = targetDate - pstDate;
+
+        var estDays = Math.floor(estTimeDifference / (1000 * 60 * 60 * 24));
+        var estHours = Math.floor(estTimeDifference / (1000 * 60 * 60)) % 24;
+
+        var pstDays = Math.floor(pstTimeDifference / (1000 * 60 * 60 * 24));
+        var pstHours = Math.floor(pstTimeDifference / (1000 * 60 * 60)) % 24;
+
+        document.getElementById("countdown").innerHTML +=
+          "<h2>EST (Eastern Standard Time): " +
+          estDays +
+          " days, " +
+          estHours +
+          " hours</h2>";
+        document.getElementById("countdown").innerHTML +=
+          "<h2>PST (Pacific Standard Time): " +
+          pstDays +
+          " days, " +
+          pstHours +
+          " hours</h2>";
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
